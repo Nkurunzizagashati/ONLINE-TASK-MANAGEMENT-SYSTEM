@@ -1,0 +1,28 @@
+.container {
+  display: grid;
+  grid-template-columns: 200px 1fr; /* Single column layout */
+  grid-template-rows: auto 1fr; /* Auto-sized rows */
+  grid-template-areas:
+    "aside header"
+    "aside main";
+  height: 100vh; /* Example: set container height to 100% of viewport height */
+}
+
+header {
+  grid-area: header; /* Assign the header to the grid area named 'header' */
+  background-color: #333;
+  color: white;
+  padding: 20px;
+}
+
+aside {
+  grid-area: aside; /* Assign the aside to the grid area named 'aside' */
+  background-color: #c35e5e;
+  padding: 20px;
+}
+
+main {
+  grid-area: main; /* Assign the main to the grid area named 'main' */
+  padding: 20px;
+  background-color: blue;
+}
