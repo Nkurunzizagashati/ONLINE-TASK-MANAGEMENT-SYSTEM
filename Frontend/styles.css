@@ -1,5 +1,5 @@
 :root {
-  --primary-color: ;
+  --primary-color: #333;
   --secondary-color: ;
   --color-light: hsla(0, 0%, 100%, 0.694);
   --color-white: #fff;
@@ -20,22 +20,49 @@
 
 header {
   grid-area: header; /* Assign the header to the grid area named 'header' */
-  background-color: #333;
+  background-color: var(--primary-color);
   color: white;
   padding: 20px;
 }
 
 aside {
   grid-area: aside; /* Assign the aside to the grid area named 'aside' */
-  background-color: #c35e5e;
+  background-color: var(--primary-color);
   padding: 20px;
 }
+
+/* STYLES FOR MAIN */
 
 main {
   grid-area: main; /* Assign the main to the grid area named 'main' */
   padding: 20px;
-  background-color: blue;
+  background-color: var(--primary-color);
+  border: 1px solid var(--color-light);
 }
+
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "todo done urgent";
+  height: 100%;
+}
+
+.todo {
+  grid-area: todo;
+  border-right: 1px solid var(--color-light);
+}
+
+.done {
+  grid-area: done;
+  border-right: 1px solid var(--color-light);
+}
+
+.urgent {
+  grid-area: urgent;
+  border-right: 1px solid var(--color-light);
+}
+
+/* STYLING NAVBAR */
 
 .navbar {
   padding-right: 20px;
