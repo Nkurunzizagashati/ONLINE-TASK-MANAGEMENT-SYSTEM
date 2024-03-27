@@ -1,6 +1,16 @@
+:root {
+  --primary-color: ;
+  --secondary-color: ;
+  --color-light: hsla(0, 0%, 100%, 0.694);
+  --color-white: #fff;
+  --font-small: 0.8rem;
+  --font-medium: 1.5rem;
+  --font-large: 2rem;
+}
+
 .container {
   display: grid;
-  grid-template-columns: 200px 1fr; /* Single column layout */
+  grid-template-columns: 1fr 6fr; /* Single column layout */
   grid-template-rows: auto 1fr; /* Auto-sized rows */
   grid-template-areas:
     "aside header"
@@ -25,4 +35,25 @@ main {
   grid-area: main; /* Assign the main to the grid area named 'main' */
   padding: 20px;
   background-color: blue;
+}
+
+.navbar {
+  padding-right: 20px;
+}
+
+.nav-items {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.nav-items a {
+  text-decoration: none;
+  color: var(--color-light);
+  font-weight: bold;
+  font-size: var(--font-medium);
+}
+
+.nav-items a:hover {
+  color: var(--color-white);
 }
