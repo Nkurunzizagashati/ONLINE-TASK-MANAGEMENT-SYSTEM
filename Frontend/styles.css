@@ -47,19 +47,31 @@ main {
   height: 100%;
 }
 
+.main-container h3 {
+  text-decoration: underline;
+}
+
 .todo {
   grid-area: todo;
   border-right: 1px solid var(--color-light);
+  display: flex;
+  justify-content: center;
+  color: var(--color-light);
 }
 
 .done {
   grid-area: done;
   border-right: 1px solid var(--color-light);
+  display: flex;
+  justify-content: center;
+  color: var(--color-light);
 }
 
 .urgent {
   grid-area: urgent;
-  border-right: 1px solid var(--color-light);
+  display: flex;
+  justify-content: center;
+  color: var(--color-light);
 }
 
 /* STYLING NAVBAR */
