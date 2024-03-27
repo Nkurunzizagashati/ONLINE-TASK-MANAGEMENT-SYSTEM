@@ -1,5 +1,6 @@
 :root {
   --primary-color: #333;
+  --primary-color-dark: hsla(0, 0%, 0%, 0.2);
   --secondary-color: ;
   --color-light: hsla(0, 0%, 100%, 0.694);
   --color-white: #fff;
@@ -8,6 +9,15 @@
   --font-large: 2rem;
 }
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+}
 .container {
   display: grid;
   grid-template-columns: 1fr 6fr; /* Single column layout */
@@ -28,7 +38,6 @@ header {
 aside {
   grid-area: aside; /* Assign the aside to the grid area named 'aside' */
   background-color: var(--primary-color);
-  padding: 20px;
 }
 
 /* STYLES FOR MAIN */
@@ -95,4 +104,40 @@ main {
 
 .nav-items a:hover {
   color: var(--color-white);
+}
+
+/* ASIDE NAVIGATION */
+
+.aside-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aside-nav-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  list-style: none;
+  padding-left: 0;
+}
+
+.aside-nav-list-items li {
+  padding: 10px 20px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.aside-nav-list-items a {
+  color: var(--color-light);
+  text-decoration: none;
+  font-size: var(--font-medium);
+}
+
+.aside-nav-list-items li:hover {
+  background-color: var(--primary-color-dark);
+  /* color: var(--color-white); */
 }
