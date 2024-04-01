@@ -142,3 +142,37 @@ main {
 .todo-info {
   margin-top: 2rem;
 }
+
+.todo,
+.done,
+.urgent {
+  padding: 20px;
+}
+
+/* COLLABORATORS */
+
+.collaborators {
+  padding: 20px;
+}
+
+.collaborators h3 {
+  text-align: center;
+}
+
+.collaborators img {
+  object-fit: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.collaborator-info {
+  /* display: flex;
+  flex-direction: column; */
+  margin-right: -8px;
+}
+
+.collaborators-infos-container {
+  display: flex;
+  justify-content: center;
+}
