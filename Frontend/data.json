@@ -6,7 +6,7 @@
       "description": "learn PHP and Laravel framework",
       "start time": "2024-04-01T12:00:00Z",
       "due": "2024-04-01T14:00:00Z",
-      "status": "Delayed",
+      "status": "todo",
       "collaborator": {
         "name": "Patrick",
         "profile pic": "https://bethelchapelchurch.com/wp-content/uploads/2019/09/happy-man.jpeg"
@@ -18,7 +18,7 @@
       "description": "Advanced jQuery",
       "start time": "2024-04-01T12:00:00Z",
       "due": "2024-04-01T14:00:00Z",
-      "status": "Completed",
+      "status": "completed",
       "collaborator": {
         "name": "Alice",
         "profile pic": "https://images.inc.com/uploaded_files/image/1920x1080/getty_143919450_9706479704500104_51510.jpg"
