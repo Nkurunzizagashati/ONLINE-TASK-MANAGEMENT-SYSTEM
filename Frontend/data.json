@@ -30,7 +30,19 @@
       "description": "Develop a web with bootstrap, it's an assignment on canvas",
       "start time": "2024-04-01T12:00:00Z",
       "due": "2024-04-01T14:00:00Z",
-      "status": "On track",
+      "status": "pending",
+      "collaborator": {
+        "name": "Kevinne",
+        "profile pic": "https://thumbs.dreamstime.com/b/happy-person-arms-raised-outstretched-69762123.jpg"
+      }
+    },
+    {
+      "id": 4,
+      "title": "Group work",
+      "description": "Develop a web with bootstrap, it's an assignment on canvas",
+      "start time": "2024-04-01T12:00:00Z",
+      "due": "2024-04-01T14:00:00Z",
+      "status": "urgent",
       "collaborator": {
         "name": "Kevinne",
         "profile pic": "https://thumbs.dreamstime.com/b/happy-person-arms-raised-outstretched-69762123.jpg"
