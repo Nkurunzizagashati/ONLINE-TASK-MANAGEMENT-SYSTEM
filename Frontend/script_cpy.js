@@ -1,6 +1,16 @@
 $(document).ready(async () => {
   let tasks; // Define tasks variable in the outer scope
 
+  try {
+    console.log("Sending the request ...");
+    const response = await $.get("http://localhost:5000/todo");
+    tasks = response.todo;
+    console.log(`tasks: ${tasks}`);
+    renderTodos(); // Call renderTodos() after tasks has been assigned
+  } catch (e) {
+    console.log(`something went wrong: ${e.message}`);
+  }
+
   // Render function to display tasks
   const renderTodos = () => {
     const renderTaskInfo = (tasks, elementClass) => {
@@ -15,17 +25,17 @@ $(document).ready(async () => {
       $(elementClass).append(`<h2>${title}</h2>`);
       tasks.forEach((task) => {
         $(elementClass).append(`<div class="task-container">
-        <div key=${task.id} class="todo-info">
-        <p>Title: ${task.title}</p>
-        <p>Description: ${task.description}</p>
-        <p>StartTime: ${task["start time"]}</p>
-        <p>Due: ${task.due}</p>
-        <p>Status: ${task.status}</p>
-        <button class="mark-complete" data-id="${task.id}">${
+                <div key=${task.id} class="todo-info">
+                  <p>Title: ${task.title}</p>
+                  <p>Description: ${task.description}</p>
+                  <p>StartTime: ${task["start time"]}</p>
+                  <p>Due: ${task.due}</p>
+                  <p>Status: ${task.status}</p>
+                  <button class="mark-complete" data-id="${task.id}">${
           elementClass === ".done" ? "Mark as Incomplete" : "Mark as Completed"
         }</button>
-        </div>
-        </div>`);
+                </div>
+              </div>`);
       });
     };
 
@@ -51,16 +61,6 @@ $(document).ready(async () => {
     renderTaskInfo(completedTasks, ".done");
     renderTaskInfo(urgentTasks, ".urgent");
   };
-
-  try {
-    console.log("Sending the request ...");
-    const response = await $.get("http://localhost:5000/todo");
-    tasks = JSON.parse(response).todo;
-    console.log(`tasks: ${tasks}`);
-    renderTodos(); // Call renderTodos() after tasks has been assigned
-  } catch (e) {
-    console.log(`something went wrong: ${e.message}`);
-  }
 
   // Event listener for "Mark as Completed" button
   $(document).on("click", ".mark-complete", async function () {
