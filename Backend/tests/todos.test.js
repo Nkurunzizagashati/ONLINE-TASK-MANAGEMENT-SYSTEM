@@ -1,5 +1,9 @@
-import { createTodoController } from "../controllers/todos.js";
-import fs from "fs";
+const {
+  createTodoController,
+  updateTodoController,
+} = require("../controllers/todos.js");
+
+const fs = require("fs");
 
 // Mock fs module
 jest.mock("fs");
@@ -37,7 +41,7 @@ describe("createTodo", () => {
       callback(null);
     });
 
-    await createTodo(req, res);
+    await createTodoController(req, res);
 
     expect(res.status).toHaveBeenCalledWith(201);
     expect(res.end).toHaveBeenCalledWith("Todo created successfully!");
@@ -60,4 +64,36 @@ describe("createTodo", () => {
   });
 
   // Add more test cases to cover other scenarios
+});
+
+describe("updateController", () => {
+  it("should send 400 status if the request is missing either the new status, or task_id", () => {
+    const req = { body: {} }; // Empty request body
+    const res = {
+      status: jest.fn().mockReturnThis(), // Mocking the status method to allow method chaining
+      end: jest.fn(),
+    };
+
+    updateTodoController(req, res);
+    expect(res.status).toBeCalledWith(400); // Asserting that status code 400 is sent
+  });
+
+  it("should update the task when both task_id and status are provided", async () => {
+    const req = { body: { task_id: 1, status: "completed" } }; // Request with task_id and status
+    const res = {
+      status: jest.fn().mockReturnThis(), // Mocking the status method to allow method chaining
+      json: jest.fn(), // Mocking the json method
+    };
+
+    await updateTodoController(req, res);
+
+    // Asserting that status code is 201, indicating success
+    expect(res.status).toHaveBeenCalledWith(201);
+    // Asserting that the response body contains the success message
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Todo has been updated successfully!",
+    });
+
+    // Additional assertions can be added to validate the updated todo list
+  });
 });

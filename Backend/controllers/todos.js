@@ -1,4 +1,5 @@
-import fs from "fs";
+// import fs from "fs";
+const fs = require("fs");
 
 const createTodoController = async (req, res) => {
   const todo = req.body;
@@ -49,4 +50,50 @@ const getTodosController = async (req, res) => {
   });
 };
 
-export { createTodoController, getTodosController };
+const updateTodoController = async (req, res) => {
+  const task_id = req.params.taskId; // Assuming taskId is part of the route params
+  const { status } = req.body;
+
+  console.log(`task id: ${task_id}, new status: ${status}`);
+
+  if (!task_id || !status) {
+    return res.status(400).json({
+      error: "You need to provide both task_id to update and new status",
+    });
+  }
+
+  try {
+    // Read the todo list from the file
+    const data = fs.readFileSync("./todo.json", "utf-8");
+    let todoList = JSON.parse(data).todo;
+
+    // Find the task with the specified task_id and update its status
+    todoList.forEach((task) => {
+      console.log("🔥🔥🔥🔥🔥🔥🔥🔥🔥");
+      if (task.id == task_id) {
+        task.status = status;
+      }
+    });
+
+    console.log(`Todo list: ${JSON.stringify(todoList, null, 2)}`);
+
+    // Write the updated todo list back to the file
+    fs.writeFileSync(
+      "./todo.json",
+      JSON.stringify({ todo: todoList }, null, 2)
+    );
+
+    return res
+      .status(200)
+      .json({ message: "Todo has been updated successfully!" });
+  } catch (error) {
+    console.error("Error updating todo:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+module.exports = {
+  createTodoController,
+  getTodosController,
+  updateTodoController,
+};

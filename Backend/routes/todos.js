@@ -1,15 +1,16 @@
-import express from "express";
-import fs from "fs";
-
-import {
+const express = require("express");
+const fs = require("fs");
+const {
   createTodoController,
   getTodosController,
-} from "../controllers/todos.js";
+  updateTodoController,
+} = require("../controllers/todos.js");
 
 const router = express.Router();
 
 router.get("/", getTodosController);
 
 router.post("/", createTodoController);
+router.put("/:taskId", updateTodoController);
 
-export default router;
+module.exports = router;
