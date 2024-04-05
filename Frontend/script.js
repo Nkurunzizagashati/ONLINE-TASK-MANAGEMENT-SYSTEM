@@ -51,31 +51,40 @@ $(document).ready(async () => {
     renderTaskInfo(completedTasks, ".done");
     renderTaskInfo(urgentTasks, ".urgent");
   };
-
-  try {
-    console.log("Sending the request ...");
-    const response = await $.get("http://localhost:5000/todo");
-    tasks = JSON.parse(response).todo;
-    console.log(`tasks: ${tasks}`);
-    renderTodos(); // Call renderTodos() after tasks has been assigned
-  } catch (e) {
-    console.log(`something went wrong: ${e.message}`);
+  async function getTodos() {
+    try {
+      console.log("Sending request ...");
+      const response = await $.get("http://localhost:5000/todo");
+      tasks = JSON.parse(response).todo;
+      console.log(tasks);
+      renderTodos(); // Call renderTodos() after tasks has been assigned
+    } catch (e) {
+      console.log(`something went wrong: ${e}`);
+    }
   }
 
+  getTodos();
+
+  // Event listener for "Mark as Completed" button
   // Event listener for "Mark as Completed" button
   $(document).on("click", ".mark-complete", async function () {
     const taskId = $(this).data("id");
 
-    // Update task status in tasks array
-    tasks.forEach((task) => {
-      if (task.id === taskId) {
-        task.status = task.status === "completed" ? "pending" : "completed";
-      }
-    });
+    try {
+      const response = await $.ajax({
+        url: `http://localhost:5000/todo/${taskId}`,
+        method: "PUT",
+        contentType: "application/json",
+        data: JSON.stringify({ status: "completed" }),
+      });
 
-    console.log("Updated tasks:", tasks);
+      console.log(response);
+    } catch (error) {
+      console.log(`something went wrong: ${error.message}`);
+    }
 
-    // Re-render UI
-    renderTodos();
+    getTodos(); // Refresh tasks after updating status
+
+    // No need to re-render UI here as it's already done in getTodos()
   });
 });
