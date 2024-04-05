@@ -1,5 +1,5 @@
-const createTodo = require("../controllers/todos");
-const fs = require("fs");
+import { createTodoController } from "../controllers/todos.js";
+import fs from "fs";
 
 // Mock fs module
 jest.mock("fs");

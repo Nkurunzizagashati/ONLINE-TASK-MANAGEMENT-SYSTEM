@@ -1,6 +1,6 @@
-const express = require("express");
-const todoRouter = require("./routes/todos");
-const cors = require("cors");
+import express from "express";
+import todoRouter from "./routes/todos.js";
+import cors from "cors";
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
